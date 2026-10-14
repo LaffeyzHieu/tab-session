@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      width: 300px;
+      padding: 16px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 13px;
+      color: #1a1a1a;
+      margin: 0;
+    }
+    h2 { margin: 0 0 14px; font-size: 15px; font-weight: 700; }
+
+    label { display: block; margin-bottom: 3px; font-weight: 500; color: #444; }
+    input[type="number"] {
+      width: 100%;
+      padding: 6px 10px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      margin-bottom: 10px;
+      font-size: 13px;
+    }
+
+    hr { border: none; border-top: 1px solid #eee; margin: 12px 0; }
+
+    /* Domain rows */
+    .domain-row {
+      display: grid;
+      grid-template-columns: 1fr auto auto;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+    .domain-name { font-weight: 600; font-size: 12px; }
+    .domain-time { font-size: 11px; color: #666; }
+    .domain-blocked {
+      font-size: 11px;
+      color: #e05;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .btn-reset {
+      font-size: 11px;
+      padding: 2px 8px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      background: #f5f5f5;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .btn-reset:hover { background: #ffe0e0; border-color: #f99; }
+
+    .status-dot {
+      display: inline-block;
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      margin-right: 4px;
+    }
+    .dot-green   { background: #22c55e; }
+    .dot-yellow  { background: #f59e0b; }
+    .dot-red     { background: #ef4444; }
+
+    #save-btn {
+      width: 100%;
+      padding: 9px;
+      background: #1a1a1a;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 600;
+    }
+    #save-btn:hover { background: #333; }
+    #saved-msg {
+      text-align: center;
+      color: #22c55e;
+      font-size: 12px;
+      margin-top: 6px;
+      display: none;
+    }
+    .penalty-note {
+      font-size: 11px;
+      color: #888;
+      margin: -6px 0 10px;
+    }
+  </style>
+</head>
+<body>
+  <h2>⏱ Tab Time Limiter</h2>
+
+  <label>Session limit (minutes)</label>
+  <input type="number" id="limit-input" min="1" max="1440" value="30">
+
+  <label>Cooldown (minutes)</label>
+  <input type="number" id="cooldown-input" min="1" max="1440" value="30">
+
+  <p class="penalty-note">⚠ "More 1 min" penalty = session limit × 2</p>
+
+  <hr>
+  <div id="domain-list"></div>
+  <hr>
+
+  <button id="save-btn">Save settings</button>
+  <div id="saved-msg">✓ Saved!</div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
